@@ -6,7 +6,7 @@ use App\Infrastructure\Exception\InfrastructureException;
 
 class PresenterException extends InfrastructureException
 {
-    public const INVALID_OUTPUT_INTERFACE = 'Invalid OutputInterface: %s';
+    public const string INVALID_OUTPUT_INTERFACE = 'Invalid OutputInterface: %s';
 
     public function __construct(string $parameter)
     {
