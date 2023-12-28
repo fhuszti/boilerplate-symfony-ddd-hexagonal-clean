@@ -1,0 +1,18 @@
+parameters:
+    level: 9
+    paths:
+        - bin/
+        - config/
+        - public/
+        - src/
+        - tests/
+
+    symfony:
+        containerXmlPath: var/cache/dev/App_Infrastructure_KernelDevDebugContainer.xml
+
+    checkGenericClassInNonGenericObjectType: false
+    treatPhpDocTypesAsCertain: false
+    ignoreErrors:
+    	-
+    	    message: '#Property App\\Domain\\[A-Z][a-z]+\\Entity\\[A-Z][a-z]+::\$id is never written, only read\.#'
+    	    path: src/*
