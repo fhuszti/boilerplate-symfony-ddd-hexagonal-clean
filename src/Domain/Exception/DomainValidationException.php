@@ -4,7 +4,7 @@ namespace App\Domain\Exception;
 
 class DomainValidationException extends DomainException
 {
-    public const VALIDATION_EXCEPTION_MESSAGE = 'Validation failed for parameter %s: %s';
+    public const string VALIDATION_EXCEPTION_MESSAGE = 'Validation failed for parameter %s: %s';
 
     public function __construct(string $parameter, string $message)
     {
