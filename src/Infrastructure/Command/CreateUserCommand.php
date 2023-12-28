@@ -5,6 +5,7 @@ namespace App\Infrastructure\Command;
 use App\Application\UseCase\CreateUser\CreateUser;
 use App\Application\UseCase\CreateUser\CreateUserCommand as CreateUserCommandDTO;
 use App\Domain\Security\RoleEnum;
+use App\Domain\User\Entity\User;
 use App\Infrastructure\Exception\InvalidTypeException;
 use App\Infrastructure\Presentation\RawPresenter;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -70,6 +71,14 @@ class CreateUserCommand extends Command
             $this->createUser->execute($command, $this->rawPresenter);
 
             $progressIndicator->finish('Finished');
+            /** @var User $createdUser */
+            $createdUser = $this->rawPresenter->getData();
+            $io->horizontalTable(
+                ['ID', 'Username', 'Email address', 'Role'],
+                [
+                    [$createdUser->getId(), $createdUser->getUsername()->getUsername(), $createdUser->getEmail()->getEmail(), $createdUser->getRole()->value],
+                ]
+            );
         } catch (\Exception $e) {
             $io->error($e->getMessage());
 
