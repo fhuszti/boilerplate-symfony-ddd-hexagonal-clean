@@ -3,13 +3,11 @@
 namespace App\Domain\Security;
 
 use App\Domain\Security\Permission\AdminUserPermissionsEnum;
-use App\Domain\Security\Permission\FreeUserPermissionsEnum;
-use App\Domain\Security\Permission\SubscribedUserPermissionsEnum;
+use App\Domain\Security\Permission\UserPermissionsEnum;
 
 enum RoleEnum: string
 {
-    case Free = 'free';
-    case Subscribed = 'subscribed';
+    case User = 'user';
     case Admin = 'admin';
 
     /**
@@ -21,44 +19,31 @@ enum RoleEnum: string
     }
 
     /**
-     * @return array<int, FreeUserPermissionsEnum|SubscribedUserPermissionsEnum|AdminUserPermissionsEnum>
+     * @return array<int, UserPermissionsEnum|AdminUserPermissionsEnum>
      */
     public function getPermissions(): array
     {
         return match ($this) {
-            RoleEnum::Free => $this->getFreeUserPermissions(),
-            RoleEnum::Subscribed => $this->getSubscribedUserPermissions(),
+            RoleEnum::User => $this->getUserPermissions(),
             RoleEnum::Admin => $this->getAdminUserPermissions()
         };
     }
 
     /**
-     * @return FreeUserPermissionsEnum[]
+     * @return UserPermissionsEnum[]
      */
-    private function getFreeUserPermissions(): array
+    private function getUserPermissions(): array
     {
-        return FreeUserPermissionsEnum::cases();
+        return UserPermissionsEnum::cases();
     }
 
     /**
-     * @return array<int, FreeUserPermissionsEnum|SubscribedUserPermissionsEnum>
-     */
-    private function getSubscribedUserPermissions(): array
-    {
-        return [
-            ...FreeUserPermissionsEnum::cases(),
-            ...SubscribedUserPermissionsEnum::cases(),
-        ];
-    }
-
-    /**
-     * @return array<int, FreeUserPermissionsEnum|SubscribedUserPermissionsEnum|AdminUserPermissionsEnum>
+     * @return array<int, UserPermissionsEnum|AdminUserPermissionsEnum>
      */
     private function getAdminUserPermissions(): array
     {
         return [
-            ...FreeUserPermissionsEnum::cases(),
-            ...SubscribedUserPermissionsEnum::cases(),
+            ...UserPermissionsEnum::cases(),
             ...AdminUserPermissionsEnum::cases(),
         ];
     }

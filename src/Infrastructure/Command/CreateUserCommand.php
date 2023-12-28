@@ -56,7 +56,7 @@ class CreateUserCommand extends Command
                 throw new InvalidTypeException('string', gettype($password));
             }
 
-            $role = $io->choice('Role?', RoleEnum::values(), RoleEnum::Free->value);
+            $role = $io->choice('Role?', RoleEnum::values(), RoleEnum::User->value);
             if (!is_string($role)) {
                 throw new InvalidTypeException('string', gettype($role));
             }

@@ -3,8 +3,7 @@
 namespace App\Domain\User\Entity;
 
 use App\Domain\Security\Permission\AdminUserPermissionsEnum;
-use App\Domain\Security\Permission\FreeUserPermissionsEnum;
-use App\Domain\Security\Permission\SubscribedUserPermissionsEnum;
+use App\Domain\Security\Permission\UserPermissionsEnum;
 use App\Domain\Security\RoleEnum;
 use App\Domain\User\Entity\ValueObject\EmailAddress;
 use App\Domain\User\Entity\ValueObject\Password;
@@ -64,7 +63,7 @@ class User
     }
 
     /**
-     * @return array<int, FreeUserPermissionsEnum|SubscribedUserPermissionsEnum|AdminUserPermissionsEnum>
+     * @return array<int, UserPermissionsEnum|AdminUserPermissionsEnum>
      */
     public function getPermissions(): array
     {

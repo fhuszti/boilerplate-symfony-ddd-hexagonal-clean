@@ -37,8 +37,7 @@ class SymfonyUserAdapter implements UserInterface, PasswordAuthenticatedUserInte
     private function getSymfonyRoleFromDomainRole(RoleEnum $domainRole): string
     {
         return match ($domainRole) {
-            RoleEnum::Free => 'ROLE_USER',
-            RoleEnum::Subscribed => 'ROLE_CUSTOMER',
+            RoleEnum::User => 'ROLE_USER',
             RoleEnum::Admin => 'ROLE_ADMIN'
         };
     }
